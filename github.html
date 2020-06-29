@@ -12,7 +12,7 @@
      }
    </style>
    <a id="topright" href="#" title="TopRight">
-   <img src="http://www.ibo.org/globalassets/digital-tookit/logos-and-programme-models/ib-world-school-logo-1-colour.png" width="150" height="150"/>
+   <img src="https://www.ibo.org/globalassets/digital-toolkit/logos-and-programme-models/ib-world-school-logo-1-colour-tb.png" width="150" height="150"/>
    </a>
    <script>
      if (confirm("Are you ready to enter the IB?")) {
@@ -26,41 +26,37 @@
      var playing = true;
      var AsianMode = false;
      var story_text = ["Welcome to the International Baccalaureate",
-     "You have been accepted into two years of suffering.",
+     "You have been accepted into two years of suffering. ",
      " ",
      " ",
      "This is the first day of your IB life",
-     "You are in a meeting with the IB coordinator and your fellow IB students",
-     " ",
-     "The IB coordinator is making a speech",
-     "Do you choose to listen?",
-     " ",
-     "It's the first weekend after school started, you were invited to an IB party, do you choose to go?",
+     "You are in a meeting with the IB coordinator and your fellow IB students<br>",
+     "The IB coordinator is making a speech<br>Do you choose to listen?",
+     "<br>It's the first weekend after school started, you were invited to an IB party, do you choose to go?",
      "You have to choose your IB subjects, do you wish to go Asian mode or IB survival mode?",
      "The deadline for CAS is approaching, you have to choose a CAS project to do",
      "You are doing TOK presentation, do you decide to do it alone or in a group?",
      "You are doing your EE, do you wish to play safe or do you wish to play big?",
      "Now the EE week comes, do you actually work or do you choose to procrastinate?",
-     "Weekend before exams",]; //variable to store story
+     "Weekend before exams",
+     " ",
+     "The night before exams",
+     "You will now enter the feared week of IB exams",]; //variable to store story
      var point = 0; //variable to store at which point of story we are in right now
      function button_press(number) { //function to progress story
-       document.getElementById('button_1').innerHTML="Button 1"; //change of naming of button 1
-       document.getElementById('button_2').innerHTML="Button 2"; //change of naming of button 2
+       document.getElementById('button_1').innerHTML="Click to proceed"; //change of naming of button 1
+       document.getElementById('button_2').innerHTML="Click to proceed"; //change of naming of button 2
        switch (point) {
          case 0:
-             document.getElementById('button_1').innerHTML="Click to proceed";
-             document.getElementById('button_2').innerHTML="Click to proceed";
            break;
          case 1:
              document.getElementById('button_1').innerHTML="sigh.";
              document.getElementById('button_2').innerHTML="sigh.";
-
            break;
          case 2:
              document.getElementById('button_1').innerHTML="I am done sighing, let's get on with it";
              document.getElementById('button_2').innerHTML="I am not done sighing, get me another minute";
            break;
-
          case 3:
                if (number === 2) {
                      //document.getElementById('story_line_text').innerHTML=document.getElementById('story_line_text').innerHTML + "<br>" + "Quit Game";
@@ -68,6 +64,10 @@
                   document.getElementById('story_line_text').innerHTML=document.getElementById('story_line_text').innerHTML + "<br>" + " ";
                   document.getElementById('button_1').innerHTML="Ok now I'm done";
                   document.getElementById('button_2').innerHTML="I don't think I will ever be done but I can't go back now";
+               } else {
+                 point++;
+                 document.getElementById('button_1').innerHTML="Yay!";
+                 document.getElementById('button_2').innerHTML="Nay!";
                }
             break;
          case 4:
@@ -79,57 +79,118 @@
                document.getElementById('button_2').innerHTML="UGH.";
              break;
          case 6:
-               document.getElementById('button_1').innerHTML="bUTTON 1";
-               document.getElementById('button_2').innerHTML="bUTTON 2";
-             break;
-         case 7:
-               document.getElementById('button_1').innerHTML="bUTTON 1";
-               document.getElementById('button_2').innerHTML="bUTTON 2";
-             break;
-         case 8:
                document.getElementById('button_1').innerHTML="Yes";
                document.getElementById('button_2').innerHTML="No";
              break;
-         case 9:
+         case 7:
               if (number === 1) {
                window.confirm("You were so focused on the speech that you did not notice anything else.");
-            }
+               Social.value = Social.value - 10;
+              }
               else {
                window.confirm("You did not pay any attention, and had to ask the person beside you about what has been said.");
-               window.confirm("Congratulations, you've made a new friend!")
-            }
+               window.confirm("Congratulations, you've made a new friend!");
+               Social.value = Social.value + 10;
+              }
+              document.getElementById('button_1').innerHTML="Yes, I go";
+              document.getElementById('button_2').innerHTML="No, I don't go";
             break;
-         case 10:
-               document.getElementById('button_1').innerHTML="Yes, I go";
-               document.getElementById('button_2').innerHTML="No, I don't go";
-             break;
-         case 11:
+         case 8:
+              if (number === 1) {
+                window.confirm("You made new friends in the party!!")
+                Social.value = Social.value + 10;
+                Study.value = Study.value - 10;
+              }
+              else {
+                window.confirm("You stayed at home to study. What a nerd.")
+                Study.value = Study.value + 10;
+                Social.value = Social.value - 10;
+              }
                document.getElementById('button_1').innerHTML="BRING ME THE ASIAN MODE!!"; //Maths FutherHigherLevel, Physics HL, Chemistry HL
                document.getElementById('button_2').innerHTML="IB SURVIVAL MODE!"; //Maths Studies, English B, Visual Arts
              break;
-         case 12:
+         case 9:
+               if (number === 1) {
+                 AsianMode = true;
+                 alert("Asian mode activated");
+               }
                document.getElementById('button_1').innerHTML="Join the Christmas ball committee";
                document.getElementById('button_2').innerHTML="Join Coding Club";
              break;
-         case 13:
+         case 10:
+              if (number === 1) {
+                Social.value = Social.value + 10;
+                Study.value = Study.value -5;
+              } else {
+                Study.value = Study.value + 5;
+                Social.value = Social.value - 5;
+              }
                document.getElementById('button_1').innerHTML="Alone";
                document.getElementById('button_2').innerHTML="In group";
              break;
-         case 14:
-         //if chosen Asian mode in case 10
-               document.getElementById('button_1').innerHTML="Play big and go for Maths FurtherHigherLevel EE";
-               document.getElementById('button_2').innerHTML="Oh please you already chose Asian mode";
-        //if chosen safe mode in case 10
-                document.getElementById('button_1').innerHTML="Play big and chose maths EE";
-                document.getElementById('button_2').innerHTML="Play safe and chose literally any of the other subjects";
+         case 11:
+               if (number === 2) {
+                  Social.value = Social.value + 5;
+               }
+
+                if(AsianMode){         //if chosen Asian mode in case 10
+                  document.getElementById('button_1').innerHTML="Play big and go for Maths FurtherHigherLevel EE";
+                  document.getElementById('button_2').innerHTML="Oh please you already chose Asian mode";
+                }
+                else {        //if chosen safe mode in case 10
+                  document.getElementById('button_1').innerHTML="Play big and chose maths EE";
+                  document.getElementById('button_2').innerHTML="Play safe and chose literally any of the other subjects";
+                }
              break;
-          case 15:
+          case 12:
+            if (number === 1) {
+                    Study.value = Study.value + 15;
+                  }
+                  else {
+                    Study.value = Study.value - 15;
+            }
                 document.getElementById('button_1').innerHTML="Actually work";
                 document.getElementById('button_2').innerHTML="Let me procrastinate just a little bit";
              break;
-          case 16:
+          case 13:
+              if (number === 1) {
+                      Study.value = Study.value + 10;
+                    }
+                    else {
+                      Study.value = Study.value - 10;
+              }
                 document.getElementById('button_1').innerHTML="Study all night";
                 document.getElementById('button_2').innerHTML="BRING ME THE SLEEP!!!!";
+             break;
+
+
+          case 15:
+                 if (number === 1) {
+                      Study.value = Study.value + 10;
+                      Sleep.value = Sleep.value -5;
+                 }
+                     else {
+                      Sleep.value = Sleep.value + 10;
+                 }
+
+                 document.getElementById('button_1').innerHTML="Panic attack";
+                 document.getElementById('button_2').innerHTML="MAJOR PANIC ATTACK";
+             break;
+           case 16:
+               if (Study.value === 100){
+                 alert("You have received a 45 points IB Diploma!!!");
+               }
+               else if (Study.value >= 30 && Study.value < 100) {
+                 alert("You have recieved the IB Diploma!!");
+               } else {
+                 alert("You have failed. See ya in 4IB.");
+               }
+
+               if (Social.value === 0){
+                 alert("You are a loner and have no friends");
+               }
+
+                 playing = false;
              break;
 
 
@@ -175,21 +236,40 @@
          Study <progress id="Study" value="0" max="100"></progress>
          <script>
          var Study = document.getElementById("Study")
-         Study.value = Study.value (add, subtract, whatever.)
+         Study.value = 50
          </script>
          <br></br>
          Social <progress id="Social" value="0" max="100"></progress>
          <script>
          var Social = document.getElementById("Social")
-         Social.value = Social.value (add, subtract, whatever.)
+         Social.value = 50
          </script>
          <br></br>
          Sleep <progress id="Sleep" value="0" max="100"></progress>
          <script>
          var Sleep = document.getElementById("Sleep")
-         Sleep.value = Sleep.value (add, subtract, whatever.)
+         Sleep.value = 50
          </script>
        </div>
+       <script>
+        if (Sleep.value === 0){
+          alert("You are now dead.");
+          playing = false;
+        }
+        else if (Sleep.value < 30 && Sleep.value > 20){
+          Study.value = Study.value - 5;
+        }
+        else if (Sleep.value < 20 && Sleep.value > 10){
+          Study.value = Study.value - 10;
+        }
+        else if (Sleep.value < 10) {
+          Study.value = Study.value - 20;
+        }
+
+        if (Social.value < 10){
+          Study.value = Study.value - 10; //depression
+        }
+       </script>
      </p>
    </body>
  </html>
